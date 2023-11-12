@@ -25,4 +25,12 @@ inputs:
     required: false
 runs:
   using: "docker"
-  image: docker://ghcr.io/splunk/appinspect-api-action/appinspect-api-action:v3.0.5
+  image: 'Dockerfile'
+  args: 
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.app_path }}
+    - ${{ inputs.included_tags }}
+    - ${{ inputs.excluded_tags }}
+    - ${{ inputs.log_level }}
+  # image: docker://ghcr.io/splunk/appinspect-api-action/appinspect-api-action:v3.0.5
