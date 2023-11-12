@@ -11,7 +11,7 @@
 # ADDON_FULL_PATH="$INPUT_APP_PATH/$ADDON_NAME"
 # -> ADDON_FULL_PATH=hoge/hoge.tgz
 
-# Expected condition is to exists the following path in host if INPUT_APP_PATH=hoge.
+# Expected condition is to exist the following path in host if INPUT_APP_PATH=hoge.
 # /home/runner/work/<repo_name>/<repo_name>/hoge/hoge.tgz
 
 # current dir in host 
@@ -22,7 +22,14 @@
 # finally these condition is required.
 # INPUT_APP_PATH=<repo_name>
 # file in host: /home/runner/work/<repo_name>/<repo_name>/<repo_name>/<repo_name>.tgz
-# this is really complex.
+# so need the following step 
+# mkdir <repo_name>
+# -> dir created: /home/runner/work/<repo_name>/<repo_name>/<repo_name>
+# mv <repo_name>.tgz <repo_name>
+# -> file moved: /home/runner/work/<repo_name>/<repo_name>/<repo_name>/<repo_name>.tgz
+
+# if create <repo_name> dir first, slim command will include <repo_name> directory. 
+# it's not good and this is really complex.
 
 # just pass the tar.gz fie path which provided slim command
 # INPUT_APP_PATH=<repo_name>.tar.gz
